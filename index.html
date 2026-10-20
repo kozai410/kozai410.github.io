@@ -13,8 +13,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
-  <script src="js/main.js" defer></script>
+  <!-- ?v= changes on every update so browsers never mix new HTML with old CSS / JS -->
+  <link rel="stylesheet" href="css/style.css?v=20261020-4">
+  <script src="js/main.js?v=20261020-4" defer></script>
 </head>
 <body>
   <header class="site-header">
@@ -40,6 +41,7 @@
       </div>
       <!-- every page of the printed portfolio, swipe / arrow to browse -->
       <div class="slider" role="region" aria-roledescription="carousel" aria-label="ポートフォリオ全ページ">
+        <div class="slider__stage">
         <div class="slider__track" tabindex="0">
           <figure class="slider__slide" data-label="表紙"><a href="images/works/page-01.jpg" target="_blank" rel="noopener"><img src="images/thumbs/page-01.jpg" srcset="images/thumbs/page-01.jpg 960w, images/works/page-01.jpg 2001w" sizes="(max-width: 960px) 92vw, 62vw" width="960" height="679" alt="表紙：PORTFOLIO 2026 の立体文字の3DCG"></a></figure>
           <figure class="slider__slide" data-label="プロフィール"><a href="images/works/page-02.jpg" target="_blank" rel="noopener"><img src="images/thumbs/page-02.jpg" srcset="images/thumbs/page-02.jpg 960w, images/works/page-02.jpg 2001w" sizes="(max-width: 960px) 92vw, 62vw" width="960" height="679" loading="lazy" alt="プロフィール"></a></figure>
@@ -61,10 +63,11 @@
           <figure class="slider__slide" data-label="建物と背景の合成 — 3DCG"><a href="images/works/page-18.jpg" target="_blank" rel="noopener"><img src="images/thumbs/page-18.jpg" srcset="images/thumbs/page-18.jpg 960w, images/works/page-18.jpg 2001w" sizes="(max-width: 960px) 92vw, 62vw" width="960" height="679" loading="lazy" alt="ビルの3DCG"></a></figure>
           <figure class="slider__slide" data-label="FIN"><a href="images/works/page-19.jpg" target="_blank" rel="noopener"><img src="images/thumbs/page-19.jpg" srcset="images/thumbs/page-19.jpg 960w, images/works/page-19.jpg 2001w" sizes="(max-width: 960px) 92vw, 62vw" width="960" height="679" loading="lazy" alt="最終ページ FIN"></a></figure>
         </div>
+          <button class="arrow arrow--prev slider__prev" type="button" aria-label="前のページ">←</button>
+          <button class="arrow arrow--next slider__next" type="button" aria-label="次のページ">→</button>
+        </div>
         <div class="slider__bar">
-          <button class="slider__btn slider__prev" type="button" aria-label="前のページ">←</button>
           <p class="slider__status" aria-live="polite"><span class="slider__count">01 / 19</span><span class="slider__label">表紙</span></p>
-          <button class="slider__btn slider__next" type="button" aria-label="次のページ">→</button>
         </div>
       </div>
     </section>
@@ -312,10 +315,14 @@
   <dialog class="viewer" aria-labelledby="viewer-title">
     <div class="viewer__inner">
       <div class="viewer__bar">
-        <button class="viewer__btn viewer__prev" type="button">← PREV</button>
         <span class="viewer__pos"></span>
-        <button class="viewer__btn viewer__next" type="button">NEXT →</button>
         <button class="viewer__btn viewer__close" type="button" aria-label="閉じる">CLOSE</button>
+      </div>
+      <!-- the page first, with previous / next on both sides of it -->
+      <div class="viewer__stage">
+        <div class="viewer__images"></div>
+        <button class="arrow arrow--prev viewer__prev" type="button" aria-label="前の作品">←</button>
+        <button class="arrow arrow--next viewer__next" type="button" aria-label="次の作品">→</button>
       </div>
       <p class="card__meta viewer__meta"></p>
       <h2 class="viewer__title" id="viewer-title"></h2>
@@ -323,7 +330,6 @@
       <p class="viewer__desc"></p>
       <ul class="tools viewer__tools"></ul>
       <p class="viewer__link"></p>
-      <div class="viewer__images"></div>
     </div>
   </dialog>
 </body>
