@@ -147,6 +147,16 @@ ul, ol { padding: 0; list-style: none; }
   cursor: pointer;
   transition: background 0.2s, border-color 0.2s, opacity 0.2s;
 }
+.arrow svg {
+  display: block;   /* an icon instead of a text glyph, so it sits exactly in the middle */
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: square;
+  stroke-linejoin: miter;
+}
 .arrow--prev { left: 10px; }
 .arrow--next { right: 10px; }
 .arrow:hover:not(:disabled) { background: rgba(0, 0, 0, 0.92); border-color: #fff; }
@@ -383,7 +393,8 @@ ul, ol { padding: 0; list-style: none; }
   .filter__label { display: none; }
   .filter__buttons { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
   .filter__buttons button { flex: none; font-size: 11px; padding: 6px 12px; }
-  .arrow { width: 38px; height: 38px; font-size: 16px; }
+  .arrow { width: 38px; height: 38px; }
+  .arrow svg { width: 18px; height: 18px; }
   .arrow--prev { left: 6px; }
   .arrow--next { right: 6px; }
   .site-header__toggle {
