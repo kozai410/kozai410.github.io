@@ -8,7 +8,8 @@
   <meta property="og:title" content="SHUNSUKE KOZAI | PORTFOLIO">
   <meta property="og:description" content="サインデザイン・Webサイト制作・3DCGのポートフォリオ">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="images/thumbs/page-01.jpg">
+  <meta property="og:url" content="https://kozai410.github.io/">
+  <meta property="og:image" content="https://kozai410.github.io/images/thumbs/page-01.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
@@ -21,6 +22,7 @@
     <button class="site-header__toggle" type="button" aria-expanded="false" aria-controls="site-nav">MENU</button>
     <nav class="site-header__nav" id="site-nav" aria-label="メインメニュー">
       <a href="#work">WORK</a>
+      <a href="#web">WEB</a>
       <a href="#personal">PERSONAL</a>
       <a href="#profile">PROFILE</a>
       <a href="#contact">CONTACT</a>
@@ -37,104 +39,162 @@
         <p class="hero__lead">看板メーカーの企画職として、サインの図面製作から製作指示・施工管理までを担当。<br>Webサイトのデザイン・コーディングや、3DCGの制作も行っています。</p>
       </div>
       <figure class="hero__visual">
-        <img src="images/thumbs/page-01.jpg" width="960" height="611" alt="PORTFOLIO 2026 の立体文字の3DCG">
+        <img src="images/thumbs/page-01.jpg" srcset="images/thumbs/page-01.jpg 960w, images/works/page-01.jpg 2001w" sizes="(max-width: 960px) 92vw, 56vw" width="960" height="679" alt="ポートフォリオの表紙：PORTFOLIO 2026 の立体文字の3DCG">
       </figure>
     </section>
+
+    <!-- ===== CATEGORY FILTER ===== -->
+    <div id="works-top" aria-hidden="true"></div>
+    <div class="filter" id="works">
+      <p class="filter__label">CATEGORY</p>
+      <div class="filter__buttons" role="group" aria-label="カテゴリで絞り込み">
+        <button type="button" data-filter="all" aria-pressed="true">ALL</button>
+        <button type="button" data-filter="sign-3dcg" aria-pressed="false">SIGN 3DCG</button>
+        <button type="button" data-filter="sign-drawing" aria-pressed="false">SIGN DRAWING</button>
+        <button type="button" data-filter="web" aria-pressed="false">WEB</button>
+        <button type="button" data-filter="personal" aria-pressed="false">PERSONAL</button>
+      </div>
+    </div>
 
     <!-- ===== WORK ===== -->
     <section class="section" id="work">
       <div class="section__head">
         <h2 class="section__title">WORK</h2>
-        <p class="section__sub">リデザイン作品 — これに似たような作品を職務で設計しました。</p>
+        <p class="section__sub">リデザイン作品</p>
       </div>
-      <div class="grid">
-        <article class="card" data-pages="04,05" data-captions="3DCGパース|製作図面">
-          <button class="card__open" type="button">
-            <img class="card__img" src="images/thumbs/page-04.jpg" width="960" height="611" loading="lazy" alt="ポールサインの3DCGパース">
-            <span class="card__meta">01 ／ SIGN DESIGN</span>
-            <span class="card__title">POLE SIGN</span>
-            <span class="card__jp">ポールサイン</span>
-          </button>
-          <p class="card__desc">3DCGパース（昼・夜）と製作図面。</p>
-          <ul class="tools"><li>Blender</li><li>Photoshop</li><li>Illustrator</li></ul>
-        </article>
 
-        <article class="card" data-pages="06" data-captions="製作図面・構造の検討書">
-          <button class="card__open" type="button">
-            <img class="card__img" src="images/thumbs/page-06.jpg" width="960" height="611" loading="lazy" alt="スタンドサインの製作図面">
-            <span class="card__meta">02 ／ SIGN DESIGN</span>
-            <span class="card__title">STAND SIGN</span>
-            <span class="card__jp">スタンドサイン</span>
-          </button>
-          <p class="card__desc">製作図面と構造の検討書。</p>
-          <ul class="tools"><li>Illustrator</li><li>Excel</li></ul>
-        </article>
+      <div class="group" data-group="sign-3dcg">
+        <h3 class="group__title">3DCG <span>3DCGパース</span></h3>
+        <div class="grid">
+          <article class="card" data-page="04">
+            <button class="card__open" type="button">
+              <img class="card__img" src="images/thumbs/page-04.jpg" width="960" height="679" loading="lazy" alt="ポールサインの3DCGパース">
+              <span class="card__meta">01 ／ SIGN 3DCG</span>
+              <span class="card__title">POLE SIGN</span>
+              <span class="card__jp">ポールサイン</span>
+            </button>
+            <p class="card__desc">ポールサインの3DCGパース（昼・夜）。</p>
+            <ul class="tools"><li>Blender</li><li>Photoshop</li><li>Illustrator</li></ul>
+          </article>
+          <article class="card" data-page="07">
+            <button class="card__open" type="button">
+              <img class="card__img" src="images/thumbs/page-07.jpg" width="960" height="679" loading="lazy" alt="壁面サインの3DCGパース">
+              <span class="card__meta">02 ／ SIGN 3DCG</span>
+              <span class="card__title">WALL SIGN</span>
+              <span class="card__jp">壁面サイン</span>
+            </button>
+            <p class="card__desc">建物に取り付けた状態の3DCGパース（昼・夜）。</p>
+            <ul class="tools"><li>Blender</li><li>Photoshop</li><li>Illustrator</li></ul>
+          </article>
+          <article class="card" data-page="09">
+            <button class="card__open" type="button">
+              <img class="card__img" src="images/thumbs/page-09.jpg" width="960" height="679" loading="lazy" alt="フロア案内サインの3DCGパース">
+              <span class="card__meta">03 ／ SIGN 3DCG</span>
+              <span class="card__title">FLOOR GUIDE SIGN</span>
+              <span class="card__jp">フロア案内サイン</span>
+            </button>
+            <p class="card__desc">館内に設置した状態の3DCGパース。</p>
+            <ul class="tools"><li>Blender</li><li>Photoshop</li><li>Illustrator</li></ul>
+          </article>
+          <article class="card" data-page="11">
+            <button class="card__open" type="button">
+              <img class="card__img" src="images/thumbs/page-11.jpg" width="960" height="679" loading="lazy" alt="ピクトグラムサインの3DCG">
+              <span class="card__meta">04 ／ SIGN 3DCG</span>
+              <span class="card__title">PICTOGRAM SIGN</span>
+              <span class="card__jp">ピクトグラムサイン</span>
+            </button>
+            <p class="card__desc">素材や光り方の違うピクトグラムサインの3DCG。</p>
+            <ul class="tools"><li>Blender</li><li>Photoshop</li><li>Illustrator</li></ul>
+          </article>
+        </div>
+      </div>
 
-        <article class="card" data-pages="07,08" data-captions="3DCGパース|製作図面">
-          <button class="card__open" type="button">
-            <img class="card__img" src="images/thumbs/page-07.jpg" width="960" height="611" loading="lazy" alt="壁面サインの3DCGパース">
-            <span class="card__meta">03 ／ SIGN DESIGN</span>
-            <span class="card__title">WALL SIGN</span>
-            <span class="card__jp">壁面サイン</span>
-          </button>
-          <p class="card__desc">建物に取り付けた状態の3DCGパース（昼・夜）と製作図面。</p>
-          <ul class="tools"><li>Blender</li><li>Photoshop</li><li>Illustrator</li></ul>
-        </article>
+      <div class="group" data-group="sign-drawing">
+        <h3 class="group__title">DRAWING <span>製作図面</span></h3>
+        <div class="grid">
+          <article class="card" data-page="05">
+            <button class="card__open" type="button">
+              <img class="card__img" src="images/thumbs/page-05.jpg" width="960" height="679" loading="lazy" alt="ポールサインの製作図面">
+              <span class="card__meta">05 ／ SIGN DRAWING</span>
+              <span class="card__title">POLE SIGN</span>
+              <span class="card__jp">ポールサイン</span>
+            </button>
+            <p class="card__desc">ポールサインの製作図面。</p>
+            <ul class="tools"><li>Illustrator</li></ul>
+          </article>
+          <article class="card" data-page="06">
+            <button class="card__open" type="button">
+              <img class="card__img" src="images/thumbs/page-06.jpg" width="960" height="679" loading="lazy" alt="スタンドサインの製作図面と構造の検討書">
+              <span class="card__meta">06 ／ SIGN DRAWING</span>
+              <span class="card__title">STAND SIGN</span>
+              <span class="card__jp">スタンドサイン</span>
+            </button>
+            <p class="card__desc">製作図面と構造の検討書。</p>
+            <ul class="tools"><li>Illustrator</li><li>Excel</li></ul>
+          </article>
+          <article class="card" data-page="08">
+            <button class="card__open" type="button">
+              <img class="card__img" src="images/thumbs/page-08.jpg" width="960" height="679" loading="lazy" alt="壁面サインの製作図面">
+              <span class="card__meta">07 ／ SIGN DRAWING</span>
+              <span class="card__title">WALL SIGN</span>
+              <span class="card__jp">壁面サイン</span>
+            </button>
+            <p class="card__desc">壁面サインの製作図面。</p>
+            <ul class="tools"><li>Illustrator</li></ul>
+          </article>
+          <article class="card" data-page="10">
+            <button class="card__open" type="button">
+              <img class="card__img" src="images/thumbs/page-10.jpg" width="960" height="679" loading="lazy" alt="フロア案内サインの製作図面">
+              <span class="card__meta">08 ／ SIGN DRAWING</span>
+              <span class="card__title">FLOOR GUIDE SIGN</span>
+              <span class="card__jp">フロア案内サイン</span>
+            </button>
+            <p class="card__desc">フロア案内サインの3DCGパースと製作図面。</p>
+            <ul class="tools"><li>Illustrator</li></ul>
+          </article>
+          <article class="card" data-page="12">
+            <button class="card__open" type="button">
+              <img class="card__img" src="images/thumbs/page-12.jpg" width="960" height="679" loading="lazy" alt="サイン計画の図面">
+              <span class="card__meta">09 ／ SIGN DRAWING</span>
+              <span class="card__title">SIGN PLAN</span>
+              <span class="card__jp">サイン計画</span>
+            </button>
+            <p class="card__desc">施設のサイン配置計画図と、各サインの図面。</p>
+            <ul class="tools"><li>Illustrator</li></ul>
+          </article>
+        </div>
+      </div>
+    </section>
 
-        <article class="card" data-pages="09,10" data-captions="3DCGパース|製作図面">
-          <button class="card__open" type="button">
-            <img class="card__img" src="images/thumbs/page-09.jpg" width="960" height="611" loading="lazy" alt="フロア案内サインの3DCGパース">
-            <span class="card__meta">04 ／ SIGN DESIGN</span>
-            <span class="card__title">FLOOR GUIDE SIGN</span>
-            <span class="card__jp">フロア案内サイン</span>
-          </button>
-          <p class="card__desc">館内に設置した状態の3DCGパースと製作図面。</p>
-          <ul class="tools"><li>Blender</li><li>Photoshop</li><li>Illustrator</li></ul>
-        </article>
-
-        <article class="card" data-pages="11" data-captions="3DCG">
-          <button class="card__open" type="button">
-            <img class="card__img" src="images/thumbs/page-11.jpg" width="960" height="611" loading="lazy" alt="ピクトグラムサインの3DCG">
-            <span class="card__meta">05 ／ SIGN DESIGN</span>
-            <span class="card__title">PICTOGRAM SIGN</span>
-            <span class="card__jp">ピクトグラムサイン</span>
-          </button>
-          <p class="card__desc">素材や光り方の違うピクトグラムサインの3DCG。</p>
-          <ul class="tools"><li>Blender</li><li>Photoshop</li><li>Illustrator</li></ul>
-        </article>
-
-        <article class="card" data-pages="12" data-captions="サイン計画図・各サインの図面">
-          <button class="card__open" type="button">
-            <img class="card__img" src="images/thumbs/page-12.jpg" width="960" height="611" loading="lazy" alt="サイン計画の図面">
-            <span class="card__meta">06 ／ SIGN DESIGN</span>
-            <span class="card__title">SIGN PLAN</span>
-            <span class="card__jp">サイン計画</span>
-          </button>
-          <p class="card__desc">施設のサイン配置計画図と、各サインの図面。</p>
-          <ul class="tools"><li>Illustrator</li></ul>
-        </article>
-
-        <article class="card" data-pages="13" data-captions="PC・スマートフォン表示と各ページ">
-          <button class="card__open" type="button">
-            <img class="card__img" src="images/thumbs/page-13.jpg" width="960" height="611" loading="lazy" alt="セルフ脱毛サロン clear のWebサイト">
-            <span class="card__meta">07 ／ WEB DESIGN</span>
-            <span class="card__title">clear</span>
-            <span class="card__jp">セルフ脱毛サロンのWebサイト</span>
-          </button>
-          <p class="card__desc">知り合いの脱毛サロンのWebサイトを立ち上げ。清涼感のある青を基調に、レスポンシブ対応しやすいデザインにしました。</p>
-          <ul class="tools"><li>HTML / CSS</li><li>jQuery</li><li>Photoshop</li><li>Illustrator</li></ul>
-        </article>
-
-        <article class="card" data-pages="14" data-captions="PC・スマートフォン表示と情報設計" data-link="https://www.forever-sign.com/">
-          <button class="card__open" type="button">
-            <img class="card__img" src="images/thumbs/page-14.jpg" width="960" height="611" loading="lazy" alt="株式会社フォーエバーのコーポレートサイト">
-            <span class="card__meta">08 ／ WEB DESIGN</span>
-            <span class="card__title">FOREVER</span>
-            <span class="card__jp">看板メーカーのコーポレートサイト</span>
-          </button>
-          <p class="card__desc">事業内容と施工実績を伝える、看板メーカーのWebサイト。端末に合わせた見やすさを設計しました。</p>
-          <ul class="tools"><li>HTML / CSS（SCSS）</li><li>Photoshop</li><li>Illustrator</li></ul>
-        </article>
+    <!-- ===== WEB ===== -->
+    <section class="section" id="web">
+      <div class="section__head">
+        <h2 class="section__title">WEB</h2>
+        <p class="section__sub">Webサイト制作</p>
+      </div>
+      <div class="group" data-group="web">
+        <div class="grid">
+          <article class="card" data-page="13">
+            <button class="card__open" type="button">
+              <img class="card__img" src="images/thumbs/page-13.jpg" width="960" height="679" loading="lazy" alt="セルフ脱毛サロン clear のWebサイト">
+              <span class="card__meta">10 ／ WEB</span>
+              <span class="card__title">clear</span>
+              <span class="card__jp">セルフ脱毛サロンのWebサイト</span>
+            </button>
+            <p class="card__desc">知り合いの脱毛サロンのWebサイトを立ち上げ。清涼感のある青を基調に、レスポンシブ対応しやすいデザインにしました。</p>
+            <ul class="tools"><li>HTML / CSS</li><li>jQuery</li><li>Photoshop</li><li>Illustrator</li></ul>
+          </article>
+          <article class="card" data-page="14" data-link="https://www.forever-sign.com/">
+            <button class="card__open" type="button">
+              <img class="card__img" src="images/thumbs/page-14.jpg" width="960" height="679" loading="lazy" alt="株式会社フォーエバーのコーポレートサイト">
+              <span class="card__meta">11 ／ WEB</span>
+              <span class="card__title">FOREVER</span>
+              <span class="card__jp">看板メーカーのコーポレートサイト</span>
+            </button>
+            <p class="card__desc">事業内容と施工実績を伝える、看板メーカーのWebサイト。端末に合わせた見やすさを設計しました。</p>
+            <ul class="tools"><li>HTML / CSS（SCSS）</li><li>Photoshop</li><li>Illustrator</li></ul>
+          </article>
+        </div>
       </div>
     </section>
 
@@ -144,39 +204,39 @@
         <h2 class="section__title">PERSONAL</h2>
         <p class="section__sub">自主制作作品</p>
       </div>
-      <div class="grid">
-        <article class="card" data-pages="16" data-captions="3DCG・作成したアセット">
-          <button class="card__open" type="button">
-            <img class="card__img" src="images/thumbs/page-16.jpg" width="960" height="611" loading="lazy" alt="水槽のある部屋の3DCG">
-            <span class="card__meta">09 ／ 3DCG</span>
-            <span class="card__title">AQUARIUM</span>
-            <span class="card__jp">アクアリウム</span>
-          </button>
-          <p class="card__desc">水槽のある部屋の3DCG。イームズ ラウンジチェア＆オットマン、ネオンテトラ、水草・流木・岩石のアセットを作成しました。</p>
-          <ul class="tools"><li>Blender</li><li>Photoshop</li><li>After Effects</li></ul>
-        </article>
-
-        <article class="card" data-pages="17" data-captions="3DCG・制作の流れ">
-          <button class="card__open" type="button">
-            <img class="card__img" src="images/thumbs/page-17.jpg" width="960" height="611" loading="lazy" alt="教室の3DCG">
-            <span class="card__meta">10 ／ 3DCG</span>
-            <span class="card__title">CLASSROOM</span>
-            <span class="card__jp">教室</span>
-          </button>
-          <p class="card__desc">Blenderでモデリングし、Unreal Engine 5でテクスチャ・配置・レンダリング、Photoshopでレタッチ。</p>
-          <ul class="tools"><li>Blender</li><li>Unreal Engine 5</li><li>Photoshop</li><li>Illustrator</li></ul>
-        </article>
-
-        <article class="card" data-pages="18" data-captions="3DCG・制作の流れ">
-          <button class="card__open" type="button">
-            <img class="card__img" src="images/thumbs/page-18.jpg" width="960" height="611" loading="lazy" alt="ビルの3DCG">
-            <span class="card__meta">11 ／ 3DCG</span>
-            <span class="card__title">BUILDING</span>
-            <span class="card__jp">建物と背景の合成</span>
-          </button>
-          <p class="card__desc">作成した建物を、背景画像になじませる試み。背景を映り込み用にも使ってUnreal Engine 5でレンダリングし、Photoshopでレタッチしました。</p>
-          <ul class="tools"><li>Blender</li><li>Unreal Engine 5</li><li>Photoshop</li></ul>
-        </article>
+      <div class="group" data-group="personal">
+        <div class="grid">
+          <article class="card" data-page="16">
+            <button class="card__open" type="button">
+              <img class="card__img" src="images/thumbs/page-16.jpg" width="960" height="679" loading="lazy" alt="水槽のある部屋の3DCG">
+              <span class="card__meta">12 ／ 3DCG</span>
+              <span class="card__title">AQUARIUM</span>
+              <span class="card__jp">アクアリウム</span>
+            </button>
+            <p class="card__desc">水槽のある部屋の3DCG。イームズ ラウンジチェア＆オットマン、ネオンテトラ、水草・流木・岩石のアセットを作成しました。</p>
+            <ul class="tools"><li>Blender</li><li>Photoshop</li><li>After Effects</li></ul>
+          </article>
+          <article class="card" data-page="17">
+            <button class="card__open" type="button">
+              <img class="card__img" src="images/thumbs/page-17.jpg" width="960" height="679" loading="lazy" alt="教室の3DCG">
+              <span class="card__meta">13 ／ 3DCG</span>
+              <span class="card__title">CLASSROOM</span>
+              <span class="card__jp">教室</span>
+            </button>
+            <p class="card__desc">Blenderでモデリングし、Unreal Engine 5でテクスチャ・配置・レンダリング、Photoshopでレタッチ。</p>
+            <ul class="tools"><li>Blender</li><li>Unreal Engine 5</li><li>Photoshop</li><li>Illustrator</li></ul>
+          </article>
+          <article class="card" data-page="18">
+            <button class="card__open" type="button">
+              <img class="card__img" src="images/thumbs/page-18.jpg" width="960" height="679" loading="lazy" alt="ビルの3DCG">
+              <span class="card__meta">14 ／ 3DCG</span>
+              <span class="card__title">BUILDING</span>
+              <span class="card__jp">建物と背景の合成</span>
+            </button>
+            <p class="card__desc">作成した建物を、背景画像になじませる試み。背景を映り込み用にも使ってUnreal Engine 5でレンダリングし、Photoshopでレタッチしました。</p>
+            <ul class="tools"><li>Blender</li><li>Unreal Engine 5</li><li>Photoshop</li></ul>
+          </article>
+        </div>
       </div>
     </section>
 

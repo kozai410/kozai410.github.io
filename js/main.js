@@ -10,10 +10,32 @@ nav.addEventListener("click", (e) => {
   if (e.target.tagName === "A") {
     nav.classList.remove("is-open");
     toggle.setAttribute("aria-expanded", "false");
+    applyFilter("all"); // a menu jump should never land on a hidden category
   }
 });
 
-// work viewer: shows the large portfolio images of the clicked card
+// category filter: show only the chosen group (and the section that holds it)
+const filterButtons = document.querySelectorAll(".filter__buttons button");
+const groups = document.querySelectorAll(".group");
+
+function applyFilter(name) {
+  filterButtons.forEach((b) => b.setAttribute("aria-pressed", b.dataset.filter === name));
+  groups.forEach((g) => { g.hidden = name !== "all" && g.dataset.group !== name; });
+  document.querySelectorAll("#work, #web, #personal").forEach((section) => {
+    section.hidden = ![...section.querySelectorAll(".group")].some((g) => !g.hidden);
+  });
+}
+
+filterButtons.forEach((b) => {
+  b.addEventListener("click", () => {
+    applyFilter(b.dataset.filter);
+    // bring the filter bar right under the header (the bar itself is sticky, so measure a static marker)
+    const top = document.getElementById("works-top").offsetTop - document.querySelector(".site-header").offsetHeight;
+    window.scrollTo({ top, behavior: "smooth" });
+  });
+});
+
+// work viewer: shows the whole portfolio page of the clicked card
 const viewer = document.querySelector(".viewer");
 const v = {
   meta: viewer.querySelector(".viewer__meta"),
@@ -42,30 +64,21 @@ function openViewer(card) {
     v.link.append(a);
   }
 
-  const pages = card.dataset.pages.split(",");
-  const captions = (card.dataset.captions || "").split("|");
+  const src = `images/works/page-${card.dataset.page}.jpg`;
+  const fig = document.createElement("figure");
+  const a = document.createElement("a");
+  a.href = src;
+  a.target = "_blank";
+  a.rel = "noopener";
+  const img = document.createElement("img");
+  img.src = src;
+  img.width = 2001;
+  img.height = 1415;
+  img.alt = card.querySelector(".card__img").alt;
+  a.append(img);
+  fig.append(a);
   v.images.textContent = "";
-  pages.forEach((p, i) => {
-    const src = `images/works/page-${p.trim()}.jpg`;
-    const fig = document.createElement("figure");
-    const a = document.createElement("a");
-    a.href = src;
-    a.target = "_blank";
-    a.rel = "noopener";
-    const img = document.createElement("img");
-    img.src = src;
-    img.width = 2023;
-    img.height = 1287;
-    img.alt = `${v.title.textContent} ${captions[i] || ""}`.trim();
-    a.append(img);
-    fig.append(a);
-    if (captions[i]) {
-      const cap = document.createElement("figcaption");
-      cap.textContent = captions[i];
-      fig.append(cap);
-    }
-    v.images.append(fig);
-  });
+  v.images.append(fig);
 
   viewer.showModal();
   viewer.scrollTop = 0;

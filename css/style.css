@@ -19,7 +19,7 @@
 *::before,
 *::after { box-sizing: border-box; }
 
-html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+html { scroll-behavior: smooth; scroll-padding-top: 130px; }
 
 body {
   margin: 0;
@@ -87,7 +87,50 @@ ul, ol { padding: 0; list-style: none; }
 }
 .hero__role { margin-top: 28px; font-size: clamp(15px, 1.6vw, 19px); font-weight: 500; }
 .hero__lead { margin-top: 16px; font-size: 14px; color: var(--sub); }
-.hero__visual { border: 1px solid var(--rule); background: #fff; }
+.hero__visual { border: 1px solid var(--rule); }
+
+/* ---------- category filter ---------- */
+.filter {
+  position: sticky;
+  top: 57px;
+  z-index: 5;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 24px;
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 14px var(--gutter);
+  background: rgba(37, 37, 37, 0.94);
+  border-bottom: 1px solid var(--rule);
+}
+.filter__label { font-family: var(--latin); font-size: 11px; letter-spacing: 0.28em; color: var(--label); }
+.filter__buttons { display: flex; flex-wrap: wrap; gap: 8px; }
+.filter__buttons button {
+  padding: 6px 14px;
+  border: 1px solid var(--rule);
+  background: none;
+  color: var(--sub);
+  font-family: var(--latin);
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  cursor: pointer;
+  transition: color 0.2s, background 0.2s, border-color 0.2s;
+}
+.filter__buttons button:hover { color: var(--text); border-color: var(--sub); }
+.filter__buttons button[aria-pressed="true"] { background: var(--text); border-color: var(--text); color: var(--bg); }
+[hidden] { display: none !important; }
+
+/* ---------- groups inside a section ---------- */
+.group + .group { margin-top: clamp(44px, 6vw, 72px); }
+.group__title {
+  margin-bottom: 20px;
+  font-family: var(--latin);
+  font-weight: 400;
+  font-size: 18px;
+  letter-spacing: 0.2em;
+}
+.group__title span { margin-left: 14px; font-family: var(--jp); font-size: 13px; letter-spacing: 0.04em; color: var(--sub); }
 
 /* ---------- sections ---------- */
 .section {
@@ -131,8 +174,8 @@ ul, ol { padding: 0; list-style: none; }
 }
 .card__img {
   width: 100%;
-  aspect-ratio: 16 / 10;
-  object-fit: cover;
+  aspect-ratio: 297 / 210;   /* whole A-size page, nothing trimmed */
+  object-fit: contain;
   border: 1px solid var(--rule);
   background: var(--card);
   transition: opacity 0.25s, transform 0.4s;
@@ -255,7 +298,12 @@ ul, ol { padding: 0; list-style: none; }
 }
 
 @media (max-width: 640px) {
+  html { scroll-padding-top: 110px; }
   .site-header { padding-block: 14px; }
+  .filter { top: 51px; padding-block: 10px; }
+  .filter__label { display: none; }
+  .filter__buttons { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
+  .filter__buttons button { flex: none; font-size: 11px; padding: 6px 12px; }
   .site-header__toggle {
     display: block;
     padding: 6px 12px;
