@@ -14,8 +14,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
   <!-- ?v= changes on every update so browsers never mix new HTML with old CSS / JS -->
-  <link rel="stylesheet" href="css/style.css?v=20261020-4">
-  <script src="js/main.js?v=20261020-4" defer></script>
+  <link rel="stylesheet" href="css/style.css?v=20261020-6">
+  <script src="js/main.js?v=20261020-6" defer></script>
 </head>
 <body>
   <header class="site-header">
@@ -68,6 +68,8 @@
         </div>
         <div class="slider__bar">
           <p class="slider__status" aria-live="polite"><span class="slider__count">01 / 19</span><span class="slider__label">表紙</span></p>
+          <!-- page-number buttons are built from the slides by js/main.js -->
+          <div class="slider__pages" role="group" aria-label="ページ番号で移動"></div>
         </div>
       </div>
     </section>

@@ -23,40 +23,60 @@ const count = document.querySelector(".slider__count");
 const label = document.querySelector(".slider__label");
 const pad = (n) => String(n).padStart(2, "0");
 
-let slideIndex = 0;     // the page the slider is on (or heading to)
-let buttonTarget = -1;  // set while a button-started scroll is still moving
+let slideIndex = 0; // the page shown; the CSS shifts the slides by this many widths
+
+// page-number buttons (01 … 19) to jump straight to a page
+const pageButtons = slides.map((slide, i) => {
+  const b = document.createElement("button");
+  b.type = "button";
+  b.textContent = pad(i + 1);
+  b.title = slide.dataset.label;
+  b.setAttribute("aria-label", `${i + 1}ページ目：${slide.dataset.label}`);
+  b.addEventListener("click", () => goToSlide(i));
+  document.querySelector(".slider__pages").append(b);
+  return b;
+});
 
 function showSlideStatus(i) {
   count.textContent = `${pad(i + 1)} / ${pad(slides.length)}`;
   label.textContent = slides[i].dataset.label;
   prevSlide.disabled = i === 0;
   nextSlide.disabled = i === slides.length - 1;
+  pageButtons.forEach((b, k) => b.setAttribute("aria-current", k === i));
 }
 function goToSlide(i) {
   slideIndex = Math.max(0, Math.min(slides.length - 1, i));
-  buttonTarget = slideIndex;
+  track.style.setProperty("--i", slideIndex);
   showSlideStatus(slideIndex);
-  track.scrollTo({ left: slideIndex * track.clientWidth });
+  // start loading this page and its neighbours right away (the rest stay lazy)
+  [slideIndex - 1, slideIndex, slideIndex + 1].forEach((k) => {
+    if (slides[k]) slides[k].querySelector("img").loading = "eager";
+  });
 }
-let settle;
-track.addEventListener("scroll", () => {
-  // while a button scroll is running keep its target; a swipe updates the page as it moves
-  if (buttonTarget < 0) showSlideStatus(Math.round(track.scrollLeft / track.clientWidth));
-  clearTimeout(settle);
-  settle = setTimeout(() => {
-    slideIndex = Math.round(track.scrollLeft / track.clientWidth);
-    buttonTarget = -1;
-    showSlideStatus(slideIndex);
-  }, 150);
-}, { passive: true });
 prevSlide.addEventListener("click", () => goToSlide(slideIndex - 1));
 nextSlide.addEventListener("click", () => goToSlide(slideIndex + 1));
 track.addEventListener("keydown", (e) => {
   if (e.key === "ArrowLeft") { e.preventDefault(); goToSlide(slideIndex - 1); }
   if (e.key === "ArrowRight") { e.preventDefault(); goToSlide(slideIndex + 1); }
 });
-window.addEventListener("resize", () => track.scrollTo({ left: slideIndex * track.clientWidth, behavior: "instant" }));
-showSlideStatus(0);
+
+// swipe (touch or mouse drag): decide on release, and don't open the image link after a drag
+let startX = null, startY = 0, dragged = false;
+track.addEventListener("pointerdown", (e) => { startX = e.clientX; startY = e.clientY; dragged = false; });
+track.addEventListener("pointerup", (e) => {
+  if (startX === null) return;
+  const dx = e.clientX - startX, dy = e.clientY - startY;
+  startX = null;
+  if (Math.abs(dx) > 8) dragged = true;
+  if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) goToSlide(slideIndex + (dx < 0 ? 1 : -1));
+});
+track.addEventListener("pointercancel", () => { startX = null; });
+track.addEventListener("click", (e) => {
+  if (dragged) { e.preventDefault(); dragged = false; }
+}, true);
+track.addEventListener("dragstart", (e) => e.preventDefault());
+
+goToSlide(0);
 
 // ---------- category filter: show only the chosen group (and the section that holds it) ----------
 const filterButtons = document.querySelectorAll(".filter__buttons button");

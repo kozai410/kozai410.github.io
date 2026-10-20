@@ -90,25 +90,44 @@ ul, ol { padding: 0; list-style: none; }
 
 /* ---------- portfolio slider (all pages) ---------- */
 .slider { min-width: 0; }
+/* the page shown is set by --i (0 = cover); every slide shifts by that many widths */
 .slider__track {
   display: flex;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
-  scrollbar-width: none;
+  overflow: hidden;
   border: 1px solid var(--rule);
   outline: none;
+  touch-action: pan-y;   /* vertical scroll stays native, horizontal swipes go to the slider */
+  user-select: none;
 }
-.slider__track::-webkit-scrollbar { display: none; }
 .slider__track:focus-visible { outline: 2px solid var(--sub); outline-offset: 4px; }
-.slider__slide { flex: 0 0 100%; scroll-snap-align: start; }
+.slider__slide {
+  flex: 0 0 100%;
+  transform: translateX(calc(var(--i, 0) * -100%));
+  transition: transform 0.45s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
 .slider__slide a { display: block; cursor: zoom-in; }
-.slider__slide img { width: 100%; aspect-ratio: 297 / 210; object-fit: contain; background: var(--card); }
+.slider__slide img { width: 100%; aspect-ratio: 297 / 210; object-fit: contain; background: var(--card); -webkit-user-drag: none; }
 .slider__stage { position: relative; }
 .slider__bar { margin-top: 14px; }
 .slider__status { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: center; gap: 4px 16px; }
 .slider__count { font-family: var(--latin); font-size: 13px; letter-spacing: 0.16em; }
 .slider__label { font-size: 13px; color: var(--sub); }
+.slider__pages { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; margin-top: 12px; }
+.slider__pages button {
+  min-width: 34px;
+  height: 30px;
+  padding: 0 6px;
+  border: 1px solid var(--rule);
+  background: none;
+  color: var(--sub);
+  font-family: var(--latin);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+}
+.slider__pages button:hover { color: var(--text); border-color: var(--sub); }
+.slider__pages button[aria-current="true"] { background: var(--text); border-color: var(--text); color: var(--bg); }
 
 /* ---------- left / right arrows on both sides of a page image ---------- */
 .arrow {
