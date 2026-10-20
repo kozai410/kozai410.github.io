@@ -21,7 +21,7 @@
     <a class="site-header__logo" href="#top">PORTFOLIO</a>
     <button class="site-header__toggle" type="button" aria-expanded="false" aria-controls="site-nav">MENU</button>
     <nav class="site-header__nav" id="site-nav" aria-label="メインメニュー">
-      <a href="#work">WORK</a>
+      <a href="#sign">SIGN</a>
       <a href="#web">WEB</a>
       <a href="#personal">PERSONAL</a>
       <a href="#profile">PROFILE</a>
@@ -38,9 +38,35 @@
         <p class="hero__role">サインデザイン ／ 3DCG ／ Webサイト制作</p>
         <p class="hero__lead">看板メーカーの企画職として、サインの図面製作から製作指示・施工管理までを担当。<br>Webサイトのデザイン・コーディングや、3DCGの制作も行っています。</p>
       </div>
-      <figure class="hero__visual">
-        <img src="images/thumbs/page-01.jpg" srcset="images/thumbs/page-01.jpg 960w, images/works/page-01.jpg 2001w" sizes="(max-width: 960px) 92vw, 56vw" width="960" height="679" alt="ポートフォリオの表紙：PORTFOLIO 2026 の立体文字の3DCG">
-      </figure>
+      <!-- every page of the printed portfolio, swipe / arrow to browse -->
+      <div class="slider" role="region" aria-roledescription="carousel" aria-label="ポートフォリオ全ページ">
+        <div class="slider__track" tabindex="0">
+          <figure class="slider__slide" data-label="表紙"><a href="images/works/page-01.jpg" target="_blank" rel="noopener"><img src="images/thumbs/page-01.jpg" srcset="images/thumbs/page-01.jpg 960w, images/works/page-01.jpg 2001w" sizes="(max-width: 960px) 92vw, 62vw" width="960" height="679" alt="表紙：PORTFOLIO 2026 の立体文字の3DCG"></a></figure>
+          <figure class="slider__slide" data-label="プロフィール"><a href="images/works/page-02.jpg" target="_blank" rel="noopener"><img src="images/thumbs/page-02.jpg" srcset="images/thumbs/page-02.jpg 960w, images/works/page-02.jpg 2001w" sizes="(max-width: 960px) 92vw, 62vw" width="960" height="679" loading="lazy" alt="プロフィール"></a></figure>
+          <figure class="slider__slide" data-label="WORK リデザイン作品"><a href="images/works/page-03.jpg" target="_blank" rel="noopener"><img src="images/thumbs/page-03.jpg" srcset="images/thumbs/page-03.jpg 960w, images/works/page-03.jpg 2001w" sizes="(max-width: 960px) 92vw, 62vw" width="960" height="679" loading="lazy" alt="WORK リデザイン作品の扉ページ"></a></figure>
+          <figure class="slider__slide" data-label="ポールサイン — 3DCG"><a href="images/works/page-04.jpg" target="_blank" rel="noopener"><img src="images/thumbs/page-04.jpg" srcset="images/thumbs/page-04.jpg 960w, images/works/page-04.jpg 2001w" sizes="(max-width: 960px) 92vw, 62vw" width="960" height="679" loading="lazy" alt="ポールサインの3DCGパース"></a></figure>
+          <figure class="slider__slide" data-label="ポールサイン — 図面"><a href="images/works/page-05.jpg" target="_blank" rel="noopener"><img src="images/thumbs/page-05.jpg" srcset="images/thumbs/page-05.jpg 960w, images/works/page-05.jpg 2001w" sizes="(max-width: 960px) 92vw, 62vw" width="960" height="679" loading="lazy" alt="ポールサインの製作図面"></a></figure>
+          <figure class="slider__slide" data-label="スタンドサイン — 図面・構造"><a href="images/works/page-06.jpg" target="_blank" rel="noopener"><img src="images/thumbs/page-06.jpg" srcset="images/thumbs/page-06.jpg 960w, images/works/page-06.jpg 2001w" sizes="(max-width: 960px) 92vw, 62vw" width="960" height="679" loading="lazy" alt="スタンドサインの製作図面と構造の検討書"></a></figure>
+          <figure class="slider__slide" data-label="壁面サイン — 3DCG"><a href="images/works/page-07.jpg" target="_blank" rel="noopener"><img src="images/thumbs/page-07.jpg" srcset="images/thumbs/page-07.jpg 960w, images/works/page-07.jpg 2001w" sizes="(max-width: 960px) 92vw, 62vw" width="960" height="679" loading="lazy" alt="壁面サインの3DCGパース"></a></figure>
+          <figure class="slider__slide" data-label="壁面サイン — 図面"><a href="images/works/page-08.jpg" target="_blank" rel="noopener"><img src="images/thumbs/page-08.jpg" srcset="images/thumbs/page-08.jpg 960w, images/works/page-08.jpg 2001w" sizes="(max-width: 960px) 92vw, 62vw" width="960" height="679" loading="lazy" alt="壁面サインの製作図面"></a></figure>
+          <figure class="slider__slide" data-label="フロア案内サイン — 3DCG"><a href="images/works/page-09.jpg" target="_blank" rel="noopener"><img src="images/thumbs/page-09.jpg" srcset="images/thumbs/page-09.jpg 960w, images/works/page-09.jpg 2001w" sizes="(max-width: 960px) 92vw, 62vw" width="960" height="679" loading="lazy" alt="フロア案内サインの3DCGパース"></a></figure>
+          <figure class="slider__slide" data-label="フロア案内サイン — 図面"><a href="images/works/page-10.jpg" target="_blank" rel="noopener"><img src="images/thumbs/page-10.jpg" srcset="images/thumbs/page-10.jpg 960w, images/works/page-10.jpg 2001w" sizes="(max-width: 960px) 92vw, 62vw" width="960" height="679" loading="lazy" alt="フロア案内サインの製作図面"></a></figure>
+          <figure class="slider__slide" data-label="ピクトグラムサイン — 3DCG"><a href="images/works/page-11.jpg" target="_blank" rel="noopener"><img src="images/thumbs/page-11.jpg" srcset="images/thumbs/page-11.jpg 960w, images/works/page-11.jpg 2001w" sizes="(max-width: 960px) 92vw, 62vw" width="960" height="679" loading="lazy" alt="ピクトグラムサインの3DCG"></a></figure>
+          <figure class="slider__slide" data-label="サイン計画 — 図面"><a href="images/works/page-12.jpg" target="_blank" rel="noopener"><img src="images/thumbs/page-12.jpg" srcset="images/thumbs/page-12.jpg 960w, images/works/page-12.jpg 2001w" sizes="(max-width: 960px) 92vw, 62vw" width="960" height="679" loading="lazy" alt="サイン計画の図面"></a></figure>
+          <figure class="slider__slide" data-label="clear — Webサイト"><a href="images/works/page-13.jpg" target="_blank" rel="noopener"><img src="images/thumbs/page-13.jpg" srcset="images/thumbs/page-13.jpg 960w, images/works/page-13.jpg 2001w" sizes="(max-width: 960px) 92vw, 62vw" width="960" height="679" loading="lazy" alt="セルフ脱毛サロン clear のWebサイト"></a></figure>
+          <figure class="slider__slide" data-label="FOREVER — コーポレートサイト"><a href="images/works/page-14.jpg" target="_blank" rel="noopener"><img src="images/thumbs/page-14.jpg" srcset="images/thumbs/page-14.jpg 960w, images/works/page-14.jpg 2001w" sizes="(max-width: 960px) 92vw, 62vw" width="960" height="679" loading="lazy" alt="株式会社フォーエバーのコーポレートサイト"></a></figure>
+          <figure class="slider__slide" data-label="PERSONAL 自主制作作品"><a href="images/works/page-15.jpg" target="_blank" rel="noopener"><img src="images/thumbs/page-15.jpg" srcset="images/thumbs/page-15.jpg 960w, images/works/page-15.jpg 2001w" sizes="(max-width: 960px) 92vw, 62vw" width="960" height="679" loading="lazy" alt="PERSONAL 自主制作作品の扉ページ"></a></figure>
+          <figure class="slider__slide" data-label="アクアリウム — 3DCG"><a href="images/works/page-16.jpg" target="_blank" rel="noopener"><img src="images/thumbs/page-16.jpg" srcset="images/thumbs/page-16.jpg 960w, images/works/page-16.jpg 2001w" sizes="(max-width: 960px) 92vw, 62vw" width="960" height="679" loading="lazy" alt="水槽のある部屋の3DCG"></a></figure>
+          <figure class="slider__slide" data-label="教室 — 3DCG"><a href="images/works/page-17.jpg" target="_blank" rel="noopener"><img src="images/thumbs/page-17.jpg" srcset="images/thumbs/page-17.jpg 960w, images/works/page-17.jpg 2001w" sizes="(max-width: 960px) 92vw, 62vw" width="960" height="679" loading="lazy" alt="教室の3DCG"></a></figure>
+          <figure class="slider__slide" data-label="建物と背景の合成 — 3DCG"><a href="images/works/page-18.jpg" target="_blank" rel="noopener"><img src="images/thumbs/page-18.jpg" srcset="images/thumbs/page-18.jpg 960w, images/works/page-18.jpg 2001w" sizes="(max-width: 960px) 92vw, 62vw" width="960" height="679" loading="lazy" alt="ビルの3DCG"></a></figure>
+          <figure class="slider__slide" data-label="FIN"><a href="images/works/page-19.jpg" target="_blank" rel="noopener"><img src="images/thumbs/page-19.jpg" srcset="images/thumbs/page-19.jpg 960w, images/works/page-19.jpg 2001w" sizes="(max-width: 960px) 92vw, 62vw" width="960" height="679" loading="lazy" alt="最終ページ FIN"></a></figure>
+        </div>
+        <div class="slider__bar">
+          <button class="slider__btn slider__prev" type="button" aria-label="前のページ">←</button>
+          <p class="slider__status" aria-live="polite"><span class="slider__count">01 / 19</span><span class="slider__label">表紙</span></p>
+          <button class="slider__btn slider__next" type="button" aria-label="次のページ">→</button>
+        </div>
+      </div>
     </section>
 
     <!-- ===== CATEGORY FILTER ===== -->
@@ -56,10 +82,10 @@
       </div>
     </div>
 
-    <!-- ===== WORK ===== -->
-    <section class="section" id="work">
+    <!-- ===== SIGN ===== -->
+    <section class="section" id="sign">
       <div class="section__head">
-        <h2 class="section__title">WORK</h2>
+        <h2 class="section__title">SIGN</h2>
         <p class="section__sub">リデザイン作品</p>
       </div>
 
@@ -285,7 +311,12 @@
   <!-- work viewer -->
   <dialog class="viewer" aria-labelledby="viewer-title">
     <div class="viewer__inner">
-      <button class="viewer__close" type="button" aria-label="閉じる">CLOSE</button>
+      <div class="viewer__bar">
+        <button class="viewer__btn viewer__prev" type="button">← PREV</button>
+        <span class="viewer__pos"></span>
+        <button class="viewer__btn viewer__next" type="button">NEXT →</button>
+        <button class="viewer__btn viewer__close" type="button" aria-label="閉じる">CLOSE</button>
+      </div>
       <p class="card__meta viewer__meta"></p>
       <h2 class="viewer__title" id="viewer-title"></h2>
       <p class="viewer__jp"></p>

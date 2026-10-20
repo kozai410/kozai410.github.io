@@ -70,24 +70,57 @@ ul, ol { padding: 0; list-style: none; }
 /* ---------- hero ---------- */
 .hero {
   display: grid;
-  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
-  gap: clamp(24px, 4vw, 64px);
+  grid-template-columns: minmax(0, 4fr) minmax(0, 7fr);
+  gap: clamp(40px, 7vw, 112px);
   align-items: center;
   max-width: var(--max);
   margin: 0 auto;
-  padding: clamp(40px, 8vw, 110px) var(--gutter) clamp(48px, 8vw, 120px);
+  padding: clamp(40px, 7vw, 96px) var(--gutter) clamp(48px, 8vw, 112px);
 }
 .eyebrow { font-size: 12px; color: var(--sub); margin-bottom: 20px; }
 .hero__name {
   font-family: var(--latin);
   font-weight: 400;
-  font-size: clamp(48px, 7.4vw, 104px);
-  line-height: 0.98;
+  font-size: clamp(44px, 5vw, 72px);
+  line-height: 1;
   letter-spacing: 0.02em;
 }
-.hero__role { margin-top: 28px; font-size: clamp(15px, 1.6vw, 19px); font-weight: 500; }
+.hero__role { margin-top: 28px; font-size: clamp(15px, 1.5vw, 18px); font-weight: 500; }
 .hero__lead { margin-top: 16px; font-size: 14px; color: var(--sub); }
-.hero__visual { border: 1px solid var(--rule); }
+
+/* ---------- portfolio slider (all pages) ---------- */
+.slider { min-width: 0; }
+.slider__track {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  border: 1px solid var(--rule);
+  outline: none;
+}
+.slider__track::-webkit-scrollbar { display: none; }
+.slider__track:focus-visible { outline: 2px solid var(--sub); outline-offset: 4px; }
+.slider__slide { flex: 0 0 100%; scroll-snap-align: start; }
+.slider__slide a { display: block; cursor: zoom-in; }
+.slider__slide img { width: 100%; aspect-ratio: 297 / 210; object-fit: contain; background: var(--card); }
+.slider__bar { display: flex; align-items: center; gap: 16px; margin-top: 14px; }
+.slider__status { flex: 1; display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 16px; min-width: 0; }
+.slider__count { font-family: var(--latin); font-size: 13px; letter-spacing: 0.16em; }
+.slider__label { font-size: 13px; color: var(--sub); }
+.slider__btn {
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--rule);
+  background: none;
+  color: var(--text);
+  font-size: 16px;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s, color 0.2s;
+}
+.slider__btn:hover { border-color: var(--sub); }
+.slider__btn:disabled { opacity: 0.3; cursor: default; }
+.slider__prev { order: -1; }
 
 /* ---------- category filter ---------- */
 .filter {
@@ -259,21 +292,35 @@ ul, ol { padding: 0; list-style: none; }
   color: var(--text);
 }
 .viewer::backdrop { background: rgba(10, 10, 10, 0.82); }
-.viewer__inner { position: relative; padding: clamp(20px, 4vw, 44px); }
-.viewer__close {
+.viewer__inner { position: relative; padding: 0 clamp(20px, 4vw, 44px) clamp(20px, 4vw, 44px); }
+/* prev / next / close stay on screen while the page image is scrolled */
+.viewer__bar {
   position: sticky;
   top: 0;
-  float: right;
-  padding: 6px 14px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 calc(-1 * clamp(20px, 4vw, 44px)) 24px;
+  padding: 14px clamp(20px, 4vw, 44px);
+  background: var(--bg);
+  border-bottom: 1px solid var(--rule);
+}
+.viewer__btn {
+  padding: 8px 14px;
   border: 1px solid var(--rule);
   background: var(--bg);
   color: var(--sub);
   font-family: var(--latin);
   font-size: 11px;
-  letter-spacing: 0.24em;
+  letter-spacing: 0.2em;
   cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
 }
-.viewer__close:hover { color: var(--text); border-color: var(--sub); }
+.viewer__btn:hover:not(:disabled) { color: var(--text); border-color: var(--sub); }
+.viewer__btn:disabled { opacity: 0.3; cursor: default; }
+.viewer__pos { font-family: var(--latin); font-size: 12px; letter-spacing: 0.16em; color: var(--sub); min-width: 4.5em; text-align: center; }
+.viewer__close { margin-left: auto; }
 .viewer__meta { margin-top: 0; }
 .viewer__title { font-family: var(--latin); font-weight: 400; font-size: clamp(28px, 4vw, 40px); letter-spacing: 0.06em; }
 .viewer__jp { color: var(--sub); font-size: 14px; }
@@ -304,6 +351,8 @@ ul, ol { padding: 0; list-style: none; }
   .filter__label { display: none; }
   .filter__buttons { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
   .filter__buttons button { flex: none; font-size: 11px; padding: 6px 12px; }
+  .viewer__btn { padding: 8px 10px; letter-spacing: 0.1em; }
+  .viewer__bar { gap: 6px; }
   .site-header__toggle {
     display: block;
     padding: 6px 12px;

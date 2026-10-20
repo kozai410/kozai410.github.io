@@ -14,14 +14,58 @@ nav.addEventListener("click", (e) => {
   }
 });
 
-// category filter: show only the chosen group (and the section that holds it)
+// ---------- portfolio slider (every page of the printed portfolio) ----------
+const track = document.querySelector(".slider__track");
+const slides = [...track.querySelectorAll(".slider__slide")];
+const prevSlide = document.querySelector(".slider__prev");
+const nextSlide = document.querySelector(".slider__next");
+const count = document.querySelector(".slider__count");
+const label = document.querySelector(".slider__label");
+const pad = (n) => String(n).padStart(2, "0");
+
+let slideIndex = 0;     // the page the slider is on (or heading to)
+let buttonTarget = -1;  // set while a button-started scroll is still moving
+
+function showSlideStatus(i) {
+  count.textContent = `${pad(i + 1)} / ${pad(slides.length)}`;
+  label.textContent = slides[i].dataset.label;
+  prevSlide.disabled = i === 0;
+  nextSlide.disabled = i === slides.length - 1;
+}
+function goToSlide(i) {
+  slideIndex = Math.max(0, Math.min(slides.length - 1, i));
+  buttonTarget = slideIndex;
+  showSlideStatus(slideIndex);
+  track.scrollTo({ left: slideIndex * track.clientWidth });
+}
+let settle;
+track.addEventListener("scroll", () => {
+  // while a button scroll is running keep its target; a swipe updates the page as it moves
+  if (buttonTarget < 0) showSlideStatus(Math.round(track.scrollLeft / track.clientWidth));
+  clearTimeout(settle);
+  settle = setTimeout(() => {
+    slideIndex = Math.round(track.scrollLeft / track.clientWidth);
+    buttonTarget = -1;
+    showSlideStatus(slideIndex);
+  }, 150);
+}, { passive: true });
+prevSlide.addEventListener("click", () => goToSlide(slideIndex - 1));
+nextSlide.addEventListener("click", () => goToSlide(slideIndex + 1));
+track.addEventListener("keydown", (e) => {
+  if (e.key === "ArrowLeft") { e.preventDefault(); goToSlide(slideIndex - 1); }
+  if (e.key === "ArrowRight") { e.preventDefault(); goToSlide(slideIndex + 1); }
+});
+window.addEventListener("resize", () => track.scrollTo({ left: slideIndex * track.clientWidth, behavior: "instant" }));
+showSlideStatus(0);
+
+// ---------- category filter: show only the chosen group (and the section that holds it) ----------
 const filterButtons = document.querySelectorAll(".filter__buttons button");
 const groups = document.querySelectorAll(".group");
 
 function applyFilter(name) {
   filterButtons.forEach((b) => b.setAttribute("aria-pressed", b.dataset.filter === name));
   groups.forEach((g) => { g.hidden = name !== "all" && g.dataset.group !== name; });
-  document.querySelectorAll("#work, #web, #personal").forEach((section) => {
+  document.querySelectorAll("#sign, #web, #personal").forEach((section) => {
     section.hidden = ![...section.querySelectorAll(".group")].some((g) => !g.hidden);
   });
 }
@@ -35,7 +79,7 @@ filterButtons.forEach((b) => {
   });
 });
 
-// work viewer: shows the whole portfolio page of the clicked card
+// ---------- work viewer: the whole page of the chosen work, with previous / next ----------
 const viewer = document.querySelector(".viewer");
 const v = {
   meta: viewer.querySelector(".viewer__meta"),
@@ -45,9 +89,15 @@ const v = {
   tools: viewer.querySelector(".viewer__tools"),
   link: viewer.querySelector(".viewer__link"),
   images: viewer.querySelector(".viewer__images"),
+  prev: viewer.querySelector(".viewer__prev"),
+  next: viewer.querySelector(".viewer__next"),
+  pos: viewer.querySelector(".viewer__pos"),
 };
+const cards = [...document.querySelectorAll(".card")];
+let shown = []; // the cards that can be stepped through (respects the category filter)
+let at = 0;
 
-function openViewer(card) {
+function showCard(card) {
   v.meta.textContent = card.querySelector(".card__meta").textContent;
   v.title.textContent = card.querySelector(".card__title").textContent;
   v.jp.textContent = card.querySelector(".card__jp").textContent;
@@ -80,16 +130,36 @@ function openViewer(card) {
   v.images.textContent = "";
   v.images.append(fig);
 
-  viewer.showModal();
+  v.pos.textContent = `${pad(at + 1)} / ${pad(shown.length)}`;
+  v.prev.disabled = at === 0;
+  v.next.disabled = at === shown.length - 1;
   viewer.scrollTop = 0;
 }
 
-document.querySelectorAll(".card").forEach((card) => {
-  card.querySelector(".card__open").addEventListener("click", () => openViewer(card));
-});
+function openViewer(card) {
+  shown = cards.filter((c) => !c.closest("[hidden]"));
+  at = shown.indexOf(card);
+  showCard(card);
+  viewer.showModal();
+}
+function step(d) {
+  const n = at + d;
+  if (n < 0 || n >= shown.length) return;
+  at = n;
+  showCard(shown[at]);
+}
 
+cards.forEach((card) => card.querySelector(".card__open").addEventListener("click", () => openViewer(card)));
+v.prev.addEventListener("click", () => step(-1));
+v.next.addEventListener("click", () => step(1));
+viewer.addEventListener("keydown", (e) => {
+  if (e.key === "ArrowLeft") step(-1);
+  if (e.key === "ArrowRight") step(1);
+});
 viewer.querySelector(".viewer__close").addEventListener("click", () => viewer.close());
 // close when the dark backdrop is clicked
 viewer.addEventListener("click", (e) => {
   if (e.target === viewer) viewer.close();
 });
+// keep the list scrolled to the work that was open last
+viewer.addEventListener("close", () => shown[at] && shown[at].scrollIntoView({ block: "center" }));
