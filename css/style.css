@@ -254,6 +254,23 @@ ul, ol { padding: 0; list-style: none; }
   background: var(--card);
   transition: opacity 0.25s, transform 0.4s;
 }
+/* video cards: poster with a play mark in the bottom-right corner (keeps the poster's text visible) */
+.card__media { position: relative; display: block; }
+.card__play {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  background: rgba(20, 20, 20, 0.72);
+  transition: background 0.2s, transform 0.2s;
+}
+.card__play svg { display: block; width: 20px; height: 20px; fill: #fff; }
+.card__open:hover .card__play { background: rgba(0, 0, 0, 0.9); transform: scale(1.06); }
 .card__open:hover .card__img,
 .card__open:focus-visible .card__img { opacity: 0.85; }
 .card__open:focus-visible { outline: 2px solid var(--sub); outline-offset: 4px; }
@@ -370,6 +387,9 @@ ul, ol { padding: 0; list-style: none; }
 .viewer__link { margin-top: 10px; font-size: 13px; }
 .viewer__link:empty { display: none; }
 .viewer__images { display: grid; gap: 24px; }
+/* videos keep their own shape (portrait or landscape) and fit the screen height */
+.viewer__images .viewer__video { display: flex; justify-content: center; background: #000; }
+.viewer__images video { display: block; width: auto; height: auto; max-width: 100%; max-height: 76vh; }
 .viewer__images figure { border: 1px solid var(--rule); }
 .viewer__images figcaption {
   padding: 8px 12px;

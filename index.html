@@ -14,8 +14,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
   <!-- ?v= changes on every update so browsers never mix new HTML with old CSS / JS -->
-  <link rel="stylesheet" href="css/style.css?v=20261020-7">
-  <script src="js/main.js?v=20261020-7" defer></script>
+  <link rel="stylesheet" href="css/style.css?v=20261022-3">
+  <script src="js/main.js?v=20261022-3" defer></script>
 </head>
 <body>
   <header class="site-header">
@@ -24,6 +24,7 @@
     <nav class="site-header__nav" id="site-nav" aria-label="メインメニュー">
       <a href="#sign">SIGN</a>
       <a href="#web">WEB</a>
+      <a href="#movie">MOVIE</a>
       <a href="#personal">PERSONAL</a>
       <a href="#profile">PROFILE</a>
       <a href="#contact">CONTACT</a>
@@ -83,6 +84,7 @@
         <button type="button" data-filter="sign-3dcg" aria-pressed="false">SIGN 3DCG</button>
         <button type="button" data-filter="sign-drawing" aria-pressed="false">SIGN DRAWING</button>
         <button type="button" data-filter="web" aria-pressed="false">WEB</button>
+        <button type="button" data-filter="movie" aria-pressed="false">MOVIE</button>
         <button type="button" data-filter="personal" aria-pressed="false">PERSONAL</button>
       </div>
     </div>
@@ -229,6 +231,38 @@
       </div>
     </section>
 
+    <!-- ===== MOVIE ===== -->
+    <section class="section" id="movie">
+      <div class="section__head">
+        <h2 class="section__title">MOVIE</h2>
+        <p class="section__sub">動画制作</p>
+      </div>
+      <div class="group" data-group="movie">
+        <div class="grid">
+          <article class="card card--video" data-video="videos/signage-39nail.mp4" data-poster="images/posters/signage-39nail.jpg" data-w="1080" data-h="1920">
+            <button class="card__open" type="button">
+              <span class="card__media"><img class="card__img" src="images/posters/signage-39nail.jpg" width="720" height="1280" loading="lazy" alt="ネイルサロン 39NAIL のサイネージ動画"><span class="card__play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 7l8 5-8 5z"/></svg></span></span>
+              <span class="card__meta">12 ／ MOVIE</span>
+              <span class="card__title">39NAIL</span>
+              <span class="card__jp">ネイルサロンのサイネージ動画</span>
+            </button>
+            <p class="card__desc">ネイルサロン「39NAIL」の店頭サイネージ用の縦型動画。施術写真と、ハンド・フットのメニューと料金を紹介しています。</p>
+            <ul class="tools"><li>縦型 1080×1920</li><li>58秒</li></ul>
+          </article>
+          <article class="card card--video" data-video="videos/aquarium-3dcg.mp4" data-poster="images/posters/aquarium-3dcg.jpg" data-w="1920" data-h="1080">
+            <button class="card__open" type="button">
+              <span class="card__media"><img class="card__img" src="images/posters/aquarium-3dcg.jpg" width="1280" height="720" loading="lazy" alt="アクアリウムの3DCGアニメーション"><span class="card__play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 7l8 5-8 5z"/></svg></span></span>
+              <span class="card__meta">14 ／ MOVIE</span>
+              <span class="card__title">AQUARIUM</span>
+              <span class="card__jp">アクアリウムの3DCGアニメーション（自主制作）</span>
+            </button>
+            <p class="card__desc">モデリング段階のグレーの画面から、完成したレンダリングへ切り替わる3DCGアニメーション。</p>
+            <ul class="tools"><li>1920×1080</li><li>10秒</li><li>Blender</li><li>After Effects</li></ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <!-- ===== PERSONAL ===== -->
     <section class="section" id="personal">
       <div class="section__head">
@@ -240,7 +274,7 @@
           <article class="card" data-page="16">
             <button class="card__open" type="button">
               <img class="card__img" src="images/thumbs/page-16.jpg" width="960" height="679" loading="lazy" alt="水槽のある部屋の3DCG">
-              <span class="card__meta">12 ／ 3DCG</span>
+              <span class="card__meta">15 ／ 3DCG</span>
               <span class="card__title">AQUARIUM</span>
               <span class="card__jp">アクアリウム</span>
             </button>
@@ -250,7 +284,7 @@
           <article class="card" data-page="17">
             <button class="card__open" type="button">
               <img class="card__img" src="images/thumbs/page-17.jpg" width="960" height="679" loading="lazy" alt="教室の3DCG">
-              <span class="card__meta">13 ／ 3DCG</span>
+              <span class="card__meta">16 ／ 3DCG</span>
               <span class="card__title">CLASSROOM</span>
               <span class="card__jp">教室</span>
             </button>
@@ -260,7 +294,7 @@
           <article class="card" data-page="18">
             <button class="card__open" type="button">
               <img class="card__img" src="images/thumbs/page-18.jpg" width="960" height="679" loading="lazy" alt="ビルの3DCG">
-              <span class="card__meta">14 ／ 3DCG</span>
+              <span class="card__meta">17 ／ 3DCG</span>
               <span class="card__title">BUILDING</span>
               <span class="card__jp">建物と背景の合成</span>
             </button>

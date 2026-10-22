@@ -85,7 +85,7 @@ const groups = document.querySelectorAll(".group");
 function applyFilter(name) {
   filterButtons.forEach((b) => b.setAttribute("aria-pressed", b.dataset.filter === name));
   groups.forEach((g) => { g.hidden = name !== "all" && g.dataset.group !== name; });
-  document.querySelectorAll("#sign, #web, #personal").forEach((section) => {
+  document.querySelectorAll("#sign, #web, #movie, #personal").forEach((section) => {
     section.hidden = ![...section.querySelectorAll(".group")].some((g) => !g.hidden);
   });
 }
@@ -134,21 +134,38 @@ function showCard(card) {
     v.link.append(a);
   }
 
-  const src = `images/works/page-${card.dataset.page}.jpg`;
   const fig = document.createElement("figure");
-  const a = document.createElement("a");
-  a.href = src;
-  a.target = "_blank";
-  a.rel = "noopener";
-  const img = document.createElement("img");
-  img.src = src;
-  img.width = 2001;
-  img.height = 1415;
-  img.alt = card.querySelector(".card__img").alt;
-  a.append(img);
-  fig.append(a);
-  v.images.textContent = "";
-  v.images.append(fig);
+  v.images.textContent = ""; // also stops a video that was playing
+  if (card.dataset.video) {
+    // video work: plays with sound right away (the click that opened it allows that)
+    fig.className = "viewer__video";
+    const video = document.createElement("video");
+    video.src = card.dataset.video;
+    video.poster = card.dataset.poster;
+    video.width = card.dataset.w;
+    video.height = card.dataset.h;
+    video.controls = true;
+    video.playsInline = true;
+    video.preload = "auto";
+    video.setAttribute("aria-label", card.querySelector(".card__img").alt);
+    fig.append(video);
+    v.images.append(fig);
+    video.play().catch(() => {}); // if the browser blocks it, the play button is still there
+  } else {
+    const src = `images/works/page-${card.dataset.page}.jpg`;
+    const a = document.createElement("a");
+    a.href = src;
+    a.target = "_blank";
+    a.rel = "noopener";
+    const img = document.createElement("img");
+    img.src = src;
+    img.width = 2001;
+    img.height = 1415;
+    img.alt = card.querySelector(".card__img").alt;
+    a.append(img);
+    fig.append(a);
+    v.images.append(fig);
+  }
 
   v.pos.textContent = `${pad(at + 1)} / ${pad(shown.length)}`;
   v.prev.disabled = at === 0;
@@ -173,13 +190,22 @@ cards.forEach((card) => card.querySelector(".card__open").addEventListener("clic
 v.prev.addEventListener("click", () => step(-1));
 v.next.addEventListener("click", () => step(1));
 viewer.addEventListener("keydown", (e) => {
+  if (e.target.tagName === "VIDEO") return; // arrow keys seek inside a focused video
   if (e.key === "ArrowLeft") step(-1);
   if (e.key === "ArrowRight") step(1);
 });
-viewer.querySelector(".viewer__close").addEventListener("click", () => viewer.close());
-// close when the dark backdrop is clicked
+// closing always stops a playing video at once (CLOSE, the dark backdrop, or Esc)
+function closeViewer() {
+  v.images.textContent = "";
+  viewer.close();
+}
+viewer.querySelector(".viewer__close").addEventListener("click", closeViewer);
 viewer.addEventListener("click", (e) => {
-  if (e.target === viewer) viewer.close();
+  if (e.target === viewer) closeViewer();
 });
+viewer.addEventListener("cancel", () => { v.images.textContent = ""; });
 // keep the list scrolled to the work that was open last
-viewer.addEventListener("close", () => shown[at] && shown[at].scrollIntoView({ block: "center" }));
+viewer.addEventListener("close", () => {
+  v.images.textContent = ""; // stop any video
+  if (shown[at]) shown[at].scrollIntoView({ block: "center" });
+});
