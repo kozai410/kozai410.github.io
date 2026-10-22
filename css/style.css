@@ -86,6 +86,7 @@ ul, ol { padding: 0; list-style: none; }
   letter-spacing: 0.02em;
 }
 .hero__role { margin-top: 28px; font-size: clamp(15px, 1.5vw, 18px); font-weight: 500; }
+.hero__role span { white-space: nowrap; }   /* wrap between the items, never inside one */
 .hero__lead { margin-top: 16px; font-size: 14px; color: var(--sub); }
 
 /* ---------- portfolio slider (all pages) ---------- */
@@ -311,6 +312,27 @@ ul, ol { padding: 0; list-style: none; }
 }
 .timeline__date { font-family: var(--latin); letter-spacing: 0.08em; color: var(--sub); }
 .profile__text { font-size: 14px; color: var(--sub); }
+.label span { margin-left: 12px; font-family: var(--jp); letter-spacing: 0.04em; text-transform: none; color: var(--sub); }
+.profile__job { padding-bottom: 6px; }
+.profile__job + .profile__job { margin-top: 18px; }
+.profile__job h4 { font-size: 15px; font-weight: 500; margin-bottom: 6px; }
+.profile__job p { font-size: 14px; color: var(--sub); }
+.profile__job p + p { margin-top: 10px; }
+.profile__list li { padding: 10px 0; border-bottom: 1px solid var(--rule); font-size: 14px; }
+.skills { margin-top: clamp(40px, 5vw, 64px); }
+.skills__rows { margin: 0; }
+.skills__rows > div {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 16px;
+  align-items: center;
+  padding: 12px 0;
+  border-top: 1px solid var(--rule);
+}
+.skills__rows > div:last-child { border-bottom: 1px solid var(--rule); }
+.skills__rows dt { font-family: var(--latin); font-size: 12px; letter-spacing: 0.2em; color: var(--label); }
+.skills__rows dd { margin: 0; }
+.skills__rows .tools { margin-top: 0; }
 
 /* ---------- contact ---------- */
 .section--contact { padding-bottom: clamp(64px, 9vw, 120px); }
@@ -444,6 +466,8 @@ ul, ol { padding: 0; list-style: none; }
   .site-header__nav a { padding: 12px 0; border-bottom: 1px solid var(--rule); }
   .grid { grid-template-columns: 1fr; }
   .timeline li { grid-template-columns: 72px 1fr; }
+  .skills__rows > div { grid-template-columns: 1fr; gap: 8px; }
+  .label span { display: block; margin: 4px 0 0; }
   .site-footer { flex-wrap: wrap; }
 }
 
